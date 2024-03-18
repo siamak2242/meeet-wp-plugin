@@ -1,5 +1,5 @@
 <div id="meeet-admin-page">
-    <div class="title">تنظیمات میییت</div>
+    <div class="title">تنظیمات <span class="__head">میییت</span></div>
     <div class="main-tabbox" data-lib-tabbing-root="admin-main-page">
         <div class="buttons" data-lib-tabbing-el="buttons">
             <button data-lib-tabbing-el="button">عمومی</button>
