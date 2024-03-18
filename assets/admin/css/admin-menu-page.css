@@ -47,11 +47,22 @@
     padding: 10px 15px;
     border: 2px solid #333;
     opacity: .4;
-    background: white;
-    transition:2s;
+    background: #812;
+    color:#ddd;
+    transition:.6s cubic-bezier(.35,.61,.42,.78);
+    font-size:30px;
+    font-family: IRANSansX,serif;
 }
 
 #meeet-admin-page .buttons button:disabled {
     opacity: 1;
-    color: black;
+    color: white;
+    transition:1s cubic-bezier(.14,.69,.4,.94);
+}
+
+#meeet-admin-page .content._tabbing_el_active {
+    display:block;
+}
+#meeet-admin-page .content {
+    display:none;
 }
