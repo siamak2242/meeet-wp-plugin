@@ -9,7 +9,7 @@
     padding: 20px 0;
     text-align: center;
     font-family: IRANSansX, serif;
-    animation: main-title 20s infinite;
+    animation: main-title 90s infinite;
     animation-timing-function: cubic-bezier(.5, -0.01, 0, 1);
 }
 
@@ -18,7 +18,7 @@
         font-size: 20px;
     }
     50% {
-        font-size: 40px;
+        font-size: 30px;
     }
     100% {
         font-size: 20px;
@@ -27,19 +27,31 @@
 
 #meeet-admin-page .title .__head {
     font-weight: bold;
-    animation-timing-function: cubic-bezier(.5, -0.01, 0, 1);
     animation: main-__head 30s infinite;
+    animation-timing-function: cubic-bezier(.5, -0.01, 0, 1);
 }
 
 @keyframes main-__head {
     0% {
-        color:#844;
+        color: #844;
     }
     50% {
-        color:#812;
+        color: #812;
     }
     100% {
-        color:#844;
+        color: #844;
     }
 }
 
+#meeet-admin-page .buttons button {
+    padding: 10px 15px;
+    border: 2px solid #333;
+    opacity: .4;
+    background: white;
+    transition:2s;
+}
+
+#meeet-admin-page .buttons button:disabled {
+    opacity: 1;
+    color: black;
+}

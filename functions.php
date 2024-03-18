@@ -1,6 +1,6 @@
 <?php
 
-const _test_version = '1.0.1';
+const _test_version = '1.0.2';
 
 function _meeet_admin_menu()
 {
@@ -18,7 +18,7 @@ function _meeet_admin_scripts()
 
     wp_enqueue_script(
         'meeet-admin-page-script',
-        plugins_url('/assets/admin/css/admin-menu-page.js?v=' . _test_version, __FILE__)
+        plugins_url('/assets/admin/js/admin-menu-page.js?v=' . _test_version, __FILE__)
     );
 
 }
