@@ -146,3 +146,29 @@
     color:#c99;
 }
 
+#meeet-admin-page input[type="checkbox"].loading + label {
+    box-shadow: 0 0 10px 14px #511;
+    background-image: linear-gradient(#811,#311);
+    animation: checkbox-loading 1s infinite;
+    animation-timing-function: cubic-bezier(.8,0, .6,1.2);
+}
+
+@keyframes checkbox-loading {
+    0% {
+        box-shadow: 0 0 10px 14px #311;
+        background: #311;
+        color:#a88;
+    }
+    50% {
+        box-shadow: 0 0 12px 14px #833;
+        background: #833;
+        color:#855;
+    }
+    100% {
+        box-shadow: 0 0 10px 14px #311;
+        background: #311;
+        color:#a88;
+    }
+
+}
+
