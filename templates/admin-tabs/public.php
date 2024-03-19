@@ -1,4 +1,4 @@
-<div class="tab-title" data-lib-tabbing-el="tab-title">عمومی</div>
+<div class="tab-title" data-lib-tabbing-el="tab-title">تنظیمات عمومی</div>
 
 <div class="tab-table">
     <div class="label">تنظیمات داشبورد</div>
