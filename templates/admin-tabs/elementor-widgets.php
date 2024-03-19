@@ -6,7 +6,7 @@
     <table>
         <tr>
             <td>
-                <input id="meeet-elementor-widget-carousel" data-option-token="_meeet_elementor_widget_carousel" type="checkbox">
+                <input id="meeet-elementor-widget-carousel" data-option-token="elementor-widgets/_meeet_elementor_widget_carousel" type="checkbox">
                 <label for="meeet-elementor-widget-carousel">گردونه</label>
             </td>
         </tr>

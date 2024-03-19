@@ -136,7 +136,6 @@
     border-radius: 12px;
     box-shadow: 0 0 10px 14px #3115;
     transition: 300ms;
-    line-height:50px;
     user-select: none;
 }
 
@@ -181,7 +180,7 @@
     padding:5px 15px;
     font-size:18px;
     font-family: IRANSansX, serif;
-    color:#3116;
+    color:#311;
     outline:none;
     transition:300ms;
     box-shadow: 0 0 12px 10px #3113;

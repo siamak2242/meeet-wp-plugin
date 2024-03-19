@@ -6,7 +6,7 @@
     <table>
         <tr>
             <td>
-                <input id="meeet-wpcontent-margin" data-option-token="_meeet_wpcontent_margin" type="checkbox">
+                <input id="meeet-wpcontent-margin" data-option-token="public/_meeet_wpcontent_margin" type="checkbox">
                 <label for="meeet-wpcontent-margin">منوی کناری</label>
             </td>
         </tr>

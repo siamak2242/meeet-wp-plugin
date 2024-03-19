@@ -6,7 +6,8 @@
     <table>
         <tr>
             <td><label for="meeet-elementor-widgets-category-name">نام دسته بندی</label></td>
-            <td><input id="meeet-elementor-widgets-category-name" type="text" data-option-token="_meeet_elementor_category_name"></td>
+            <td><input id="meeet-elementor-widgets-category-name" type="text"
+                       data-option-token="elementor-settings/_meeet_elementor_category_name"></td>
         </tr>
     </table>
 </div>
