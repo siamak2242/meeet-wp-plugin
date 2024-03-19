@@ -48,58 +48,90 @@
     border: 2px solid #333;
     opacity: .4;
     background: #812;
-    color:#ddd;
-    transition:.6s cubic-bezier(.35,.61,.42,.78);
-    font-size:20px;
-    font-family: IRANSansX,serif;
+    color: #ddd;
+    transition: .6s cubic-bezier(.35, .61, .42, .78);
+    font-size: 20px;
+    font-family: IRANSansX, serif;
 }
 
 #meeet-admin-page .buttons button:disabled {
     opacity: 1;
     color: white;
-    transition:1s cubic-bezier(.14,.69,.4,.94);
+    transition: 1s cubic-bezier(.14, .69, .4, .94);
 }
 
 #meeet-admin-page .content._tabbing_el_active {
-    display:block;
+    display: block;
 }
+
 #meeet-admin-page .content {
-    display:none;
-    min-height:100vh;
+    display: none;
+    min-height: 100vh;
 }
 
 #meeet-admin-page .content .tab-title {
-    padding:20px 15px;
-    font-size:25px;
-    font-weight:800;
+    padding: 20px 15px;
+    font-size: 25px;
+    font-weight: 800;
     font-family: IRANSansX, serif;
-    color:#512;
+    color: #512;
 }
 
 #meeet-admin-page .tab-table .label {
-    font-size:22px;
+    font-size: 22px;
     font-weight: 200;
+    font-family: IRANSansX, serif;
+    color: #533;
+    display:inline-block;
+    padding: 20px 40px;
+}
+
+#meeet-admin-page .tab-table .descr {
+    display:inline-block;
     font-family: IRANSansX,serif;
-    color:#533;
-    padding:20px 40px;
+    color:#2227;
+    font-size:16px;
+    line-height:20px;
+    margin:20px -30px 0 0;
 }
 
 #meeet-admin-page .tab-table table {
-    width:calc(100% - 80px);
+    width: calc(100% - 80px);
     border-collapse: collapse;
-    margin:5px 40px;
-    background:#3111;
+    margin: 5px 40px;
+    background: #3111;
 }
 
 #meeet-admin-page .tab-table table td {
-    /*border:1px solid #911;*/
-    color:#311;
-    font-family: IRANSansX,serif;
-    font-size:20px;
-    padding:20px;
+    color: #311;
+    font-family: IRANSansX, serif;
+    font-size: 20px;
+    padding: 20px;
     text-align: center;
 }
 
 #meeet-admin-page .tab-table table td:first-child {
-    border-left:1px solid #e77;
+    border-left: 1px solid #e77;
+}
+
+#meeet-admin-page input[type="checkbox"] {
+    display: none;
+}
+
+#meeet-admin-page input[type="checkbox"] + label {
+    width: 240px;
+    margin:0 auto;
+    height: 50px;
+    background: #3115;
+    color: #3116;
+    font-size: 40px;
+    display: block;
+    border-radius:12px;
+    box-shadow:0 0 50px 50px #3115;
+    transition:300ms;
+}
+
+#meeet-admin-page input[type="checkbox"]:checked + label {
+    box-shadow:0 0 50px 50px #822;
+    background: #822f;
 }
