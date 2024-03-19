@@ -146,6 +146,7 @@
     color:#c99;
 }
 
+#meeet-admin-page input[type="text"].loading,
 #meeet-admin-page input[type="checkbox"].loading + label {
     box-shadow: 0 0 10px 14px #511;
     background-image: linear-gradient(#811,#311);
@@ -172,3 +173,28 @@
 
 }
 
+#meeet-admin-page input[type="text"] {
+    background:#3113;
+    border:1px solid #522;
+    border-radius: 3px;
+    width:100%;
+    padding:5px 15px;
+    font-size:18px;
+    font-family: IRANSansX, serif;
+    color:#3116;
+    outline:none;
+    transition:300ms;
+    box-shadow: 0 0 12px 10px #3113;
+}
+
+#meeet-admin-page input[type="text"]::placeholder {
+    color:#833b;
+    padding:0 10px;
+
+}
+
+#meeet-admin-page input[type="text"]:focus {
+    background:#822f;
+    color:#c99;
+    box-shadow: 0 0 10px 10px #822f;
+}
