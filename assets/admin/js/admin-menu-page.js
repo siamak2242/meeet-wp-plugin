@@ -41,7 +41,13 @@ window.addEventListener('load', () => {
 
         const fetchPrimaryOption = (mode, entries, callback) => {
             const body = new FormData()
-            mode = mode === 'get' ? 'meeet_get_primary_option' : mode === 'set' ? 'meeet_set_primary_option' : throw new Error('invalid mode')
+            if (mode === 'get') {
+                mode = 'meeet_get_primary_option'
+            } else if (mode === 'set') {
+                mode = 'meeet_set_primary_option'
+            } else {
+                throw new Error('invalid mode')
+            }
             body.append('action', mode)
             for (const [key, value] of Object.entries(entries)) {
                 body.append(key, value)

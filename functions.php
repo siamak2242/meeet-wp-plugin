@@ -1,6 +1,6 @@
 <?php
 
-const _test_version = '1.0.6';
+const _test_version = '1.0.7';
 
 function _meeet_admin_menu()
 {
