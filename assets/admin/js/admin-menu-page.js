@@ -1,3 +1,4 @@
+// lib => tabbing
 window.addEventListener('load', () => {
     const tabboxes = document.querySelectorAll('[data-lib-tabbing-el="root"]')
     tabboxes.forEach(tabbox => {
@@ -26,6 +27,33 @@ window.addEventListener('load', () => {
                 clicked(button)
                 push_content(contents[index])
             })
+        })
+    })
+})
+
+// lib => connect inputs to database
+window.addEventListener('load', () => {
+    const ajaxAdmin = document.querySelector('[data-admin-ajax]').getAttribute('data-admin-ajax')
+    const inputs = document.querySelectorAll('[data-option-token]')
+    inputs.forEach(input => {
+        const token = input.getAttribute('data-option-token')
+        const type = input.type
+
+        const fetchPrimaryOption = (mode, token, entries, callback) => {
+            mode = mode === 'get' ? 'meeet_get_primary_option' : mode === 'set' ? 'meeet_set_primary_option' : throw new Error('invalid mode')
+            const body = new FormData()
+            body.append('action', mode)
+            for (const [key, value] of Object.entries(entries)) {
+                body.append(key, value)
+            }
+            fetch(ajaxAdmin, {
+                method: 'POST',
+                body: body
+            }).then(r => r.json()).then(data => callback(data))
+        }
+
+        fetchPrimaryOption('get', token, {}, (data) => {
+            console.log(data)
         })
     })
 })
