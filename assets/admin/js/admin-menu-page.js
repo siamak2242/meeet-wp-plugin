@@ -39,9 +39,9 @@ window.addEventListener('load', () => {
         const token = input.getAttribute('data-option-token')
         const type = input.type
 
-        const fetchPrimaryOption = (mode, token, entries, callback) => {
-            mode = mode === 'get' ? 'meeet_get_primary_option' : mode === 'set' ? 'meeet_set_primary_option' : throw new Error('invalid mode')
+        const fetchPrimaryOption = (mode, entries, callback) => {
             const body = new FormData()
+            mode = mode === 'get' ? 'meeet_get_primary_option' : mode === 'set' ? 'meeet_set_primary_option' : throw new Error('invalid mode')
             body.append('action', mode)
             for (const [key, value] of Object.entries(entries)) {
                 body.append(key, value)
@@ -52,7 +52,10 @@ window.addEventListener('load', () => {
             }).then(r => r.json()).then(data => callback(data))
         }
 
-        fetchPrimaryOption('get', token, {}, (data) => {
+        fetchPrimaryOption('get', {
+            token: token,
+            value_type: 'boolean',
+        }, (data) => {
             console.log(data)
         })
     })
