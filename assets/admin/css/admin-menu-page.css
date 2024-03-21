@@ -127,15 +127,17 @@
 }
 
 #meeet-admin-page input[type="checkbox"] + label {
+    box-sizing: border-box;
     width: fit-content;
+    padding:0 30px 0 10px;
     margin: 0 auto;
-    background: #3115;
-    color: #3116;
+    background: #3113;
+    color: #3119;
     font-size: 20px;
     display: block;
     border-radius: 12px;
-    box-shadow: 0 0 10px 14px #3115;
-    transition: 300ms;
+    box-shadow: 0 0 10px 14px #3113;
+    transition: 800ms;
     user-select: none;
 }
 
@@ -145,32 +147,33 @@
     color:#c99;
 }
 
-#meeet-admin-page input[type="text"].loading,
-#meeet-admin-page input[type="checkbox"].loading + label {
-    box-shadow: 0 0 10px 14px #511;
-    background-image: linear-gradient(#811,#311);
-    animation: checkbox-loading 1s infinite;
-    animation-timing-function: cubic-bezier(.8,0, .6,1.2);
+#meeet-admin-page input[type="checkbox"]:disabled + label {
+    box-shadow: 0 0 10px 5px #5555;
+    background:#5555;
+    color:#999;
+    animation:disabled-checkbox infinite 1s ease-in-out;
 }
 
-@keyframes checkbox-loading {
-    0% {
-        box-shadow: 0 0 10px 14px #311;
-        background: #311;
-        color:#a88;
-    }
-    50% {
-        box-shadow: 0 0 12px 14px #833;
-        background: #833;
-        color:#855;
-    }
-    100% {
-        box-shadow: 0 0 10px 14px #311;
-        background: #311;
-        color:#a88;
-    }
-
+@keyframes disabled-checkbox {
+    0% {rotate:2deg}
+    50% {rotate:-2deg}
+    100% {rotate:2deg}
 }
+
+#meeet-admin-page input[type="checkbox"]:checked + label:after {
+    content: 'on';
+}
+#meeet-admin-page input[type="checkbox"] + label:after {
+    content: 'off';
+    display:inline-block;
+    margin:0 15px 0 0;
+    width:30px;
+}
+#meeet-admin-page input[type="checkbox"]:disabled + label:after {
+    content:'';
+}
+
+
 
 #meeet-admin-page input[type="text"] {
     background:#3113;
@@ -182,7 +185,7 @@
     font-family: IRANSansX, serif;
     color:#311;
     outline:none;
-    transition:300ms;
+    transition:2300ms;
     box-shadow: 0 0 12px 10px #3113;
 }
 
@@ -196,4 +199,8 @@
     background:#822f;
     color:#c99;
     box-shadow: 0 0 10px 10px #822f;
+}
+
+#meeet-admin-page input[type="text"]:disabled {
+    animation: disabled-checkbox .5s infinite;
 }
