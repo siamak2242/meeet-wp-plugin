@@ -59,7 +59,7 @@ window.addEventListener('load', () => {
                 fetchPrimaryOption({
                     method: 'get',
                     token: token,
-                }, data => input.checked = data === 'true')
+                }, data => input.checked = data)
                 input.addEventListener('change', () => {
                     fetchPrimaryOption({
                         method: 'set',
