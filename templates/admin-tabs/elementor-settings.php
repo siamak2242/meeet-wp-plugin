@@ -2,7 +2,7 @@
 
 <div class="tab-table">
     <span class="label">تنظیمات دسته بندی ویجت&zwnj;های المنتور</span>
-    <span class="descr">ویژگی های دسته بندی ویجت&zwnj;های المنتور</span>
+    <span class="descr"> سفارشی سازی ویجت&zwnj;های المنتور</span>
     <table>
         <tr>
             <td><label for="meeet-elementor-widgets-category-name">نام دسته بندی</label></td>

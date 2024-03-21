@@ -37,32 +37,55 @@ window.addEventListener('load', () => {
     const inputs = document.querySelectorAll('[data-option-token]')
     inputs.forEach(input => {
         const token = input.getAttribute('data-option-token')
-        const type = input.type
-
-        const fetchPrimaryOption = (mode, entries, callback) => {
+        const fetchPrimaryOption = (entries, callback = null) => {
+            input.disabled = true
             const body = new FormData()
-            if (mode === 'get') {
-                mode = 'meeet_get_primary_option'
-            } else if (mode === 'set') {
-                mode = 'meeet_set_primary_option'
-            } else {
-                throw new Error('invalid mode')
-            }
-            body.append('action', mode)
+            body.append('action', 'meeet_fetch_primary_option')
             for (const [key, value] of Object.entries(entries)) {
                 body.append(key, value)
             }
             fetch(ajaxAdmin, {
                 method: 'POST',
                 body: body
-            }).then(r => r.json()).then(data => callback(data))
+            }).then(r => r.json()).then(data => {
+                input.disabled = false
+                if (callback)
+                    callback(data)
+            })
         }
 
-        fetchPrimaryOption('get', {
-            token: token,
-            value_type: 'boolean',
-        }, (data) => {
-            console.log(data)
-        })
+        switch (input.type) {
+            case 'checkbox':
+                fetchPrimaryOption({
+                    method: 'get',
+                    token: token,
+                }, data => input.checked = data === 'true')
+                input.addEventListener('change', () => {
+                    fetchPrimaryOption({
+                        method: 'set',
+                        token: token,
+                        type: input.type,
+                        value: input.checked
+                    })
+                })
+                break
+            case 'text':
+                fetchPrimaryOption({
+                    method: 'get',
+                    token: token,
+                }, data => {
+                    input.value = data
+                    input.placeholder = data
+                })
+
+                input.addEventListener('change', () => {
+                    fetchPrimaryOption({
+                        method: 'set',
+                        token: token,
+                        value: input.value,
+                    })
+                })
+        }
+
     })
 })
