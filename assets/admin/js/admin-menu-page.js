@@ -1,3 +1,12 @@
+// lib => loading page
+window.addEventListener('load', () => {
+    const loading = document.getElementById('meeet-loading-page')
+    loading.classList.add('fade-hide')
+    setTimeout(() => {
+        loading.style.display = 'none'
+    }, 1000)
+})
+
 // lib => tabbing
 window.addEventListener('load', () => {
     const tabboxes = document.querySelectorAll('[data-lib-tabbing-el="root"]')

@@ -1,5 +1,7 @@
 <div data-admin-ajax="<?php echo admin_url('admin-ajax.php') ?>"></div>
 
+<div id="meeet-loading-page"><span></span></div>
+
 <div id="meeet-admin-page">
     <div class="title">تنظیمات <span class="__head">میییت</span></div>
     <div class="main-tabbox" data-lib-tabbing-el="root" data-lib-tabbing-default="0">
