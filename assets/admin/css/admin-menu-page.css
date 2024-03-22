@@ -1,3 +1,7 @@
+#wpcontent {
+    transition: .5s ease-out;
+}
+
 #meeet-admin-page {
     background-color: #efe;
     padding: 10px;

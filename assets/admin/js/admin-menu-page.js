@@ -33,10 +33,22 @@ window.addEventListener('load', () => {
 
 // lib => connect inputs to database
 window.addEventListener('load', () => {
+    const wpcontent = document.getElementById('wpcontent')
+    const wpcontent_margin = getComputedStyle(wpcontent).padding
+    const wpcontentEngine = input => {
+        if (input.checked) {
+            wpcontent.style.padding = wpcontent_margin
+        } else {
+            wpcontent.style.padding = 0
+        }
+    }
+
     const ajaxAdmin = document.querySelector('[data-admin-ajax]').getAttribute('data-admin-ajax')
     const inputs = document.querySelectorAll('[data-option-token]')
     inputs.forEach(input => {
         const token = input.getAttribute('data-option-token')
+        const is_wpcontent_margin = input.id === 'meeet-wpcontent-margin'
+
         const fetchPrimaryOption = (entries, callback = null) => {
             input.disabled = true
             const body = new FormData()
@@ -59,13 +71,21 @@ window.addEventListener('load', () => {
                 fetchPrimaryOption({
                     method: 'get',
                     token: token,
-                }, data => input.checked = data)
+                }, data => {
+                    input.checked = data
+                    if (is_wpcontent_margin) {
+                        wpcontentEngine(input)
+                    }
+                })
                 input.addEventListener('change', () => {
                     fetchPrimaryOption({
                         method: 'set',
                         token: token,
                         type: input.type,
                         value: input.checked
+                    }, () => {
+                        if (is_wpcontent_margin)
+                            wpcontentEngine(input)
                     })
                 })
                 break
