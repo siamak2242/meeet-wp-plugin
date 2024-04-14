@@ -11,7 +11,7 @@ class MeeetOptionHandler
             '_meeet_elementor_category_name' => 'دسته بندی میییت',
         ],
         'elementor-widgets' => [
-            '_meeet_elementor_widgets_carousel' => false,
+            '_meeet_elementor_widget_carousel' => false,
         ],
     ];
 

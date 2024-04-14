@@ -1,0 +1,12 @@
+/*start settings*/
+/*this settings fix glider library*/
+
+.glider__track {
+    direction: ltr;
+}
+
+.glider__track * {
+    direction: rtl;
+}
+
+/*end settings*/

@@ -17,6 +17,29 @@ function _meeet_elementor_register_category($manager): void
 
 function _meeet_elementor_register_scripts(): void
 {
+    // carousel widget style
+    wp_enqueue_style(
+        'meeet-elementor-widget-style-carousel',
+        plugins_url('../assets/widgets/css/carousel.css?v=' . _test_version, __FILE__)
+    );
+
+    // elementor widgets global functions
+    wp_enqueue_script(
+        'meeet-lib-functions',
+        plugins_url('../assets/libs/functions.js?v=' . _test_version, __FILE__)
+    );
+
+    // glider library engine
+    wp_enqueue_script(
+        'meeet-lib-glider-script',
+        plugins_url('../assets/libs/glider/glider.min.js', __FILE__)
+    );
+
+    // glider library style
+    wp_enqueue_style(
+        'meeet-lib-glider-style',
+        plugins_url('../assets/libs/glider/glider.min.css', __FILE__)
+    );
 }
 
 function _meeet_elementor_register_widgets($manager): void
