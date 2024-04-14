@@ -10,3 +10,39 @@
 }
 
 /*end settings*/
+
+/*start custom reset styles*/
+
+.top-left {
+    top: 0;
+    left: 0;
+}
+
+.top-right {
+    top: 0;
+    right: 0;
+}
+
+.bottom-left {
+    bottom: 0;
+    left: 0;
+}
+
+.bottom-right {
+    bottom: 0;
+    right: 0;
+}
+
+/*end custom reset styles*/
+
+.glider__slide {
+    position: relative;
+}
+
+.post__category {
+    position: absolute;
+}
+
+.post__category span {
+    display: inline-block;
+}

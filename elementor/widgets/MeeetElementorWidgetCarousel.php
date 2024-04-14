@@ -2,6 +2,7 @@
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
+use Elementor\Group_Control_Typography;
 
 class MeeetElementorWidgetCarousel extends Widget_Base
 {
@@ -40,7 +41,8 @@ class MeeetElementorWidgetCarousel extends Widget_Base
     protected function register_controls()
     {
         $this->start_controls_section('query-settings', [
-            'label' => 'تنظیمات کوئری'
+            'label' => 'تنظیمات کوئری',
+            'tab' => Controls_Manager::TAB_CONTENT,
         ]);
         $this->add_control('slide-type', [
             'label' => 'نمایش از:',
@@ -54,6 +56,7 @@ class MeeetElementorWidgetCarousel extends Widget_Base
 
         $this->start_controls_section('slide-settings', [
             'label' => 'تنظمات اسلاید',
+            'tab' => Controls_Manager::TAB_CONTENT,
         ]);
         $this->add_control('show-categories', [
             'type' => Controls_Manager::SWITCHER,
@@ -81,6 +84,94 @@ class MeeetElementorWidgetCarousel extends Widget_Base
             'default' => 'yes',
         ]);
         $this->end_controls_section();
+
+        $this->start_controls_section('categories-style', [
+            'label' => 'دسته بندی ها',
+            'tab' => Controls_Manager::TAB_STYLE,
+            'condition' => [
+                'show-categories' => 'yes',
+            ]
+        ]);
+        $this->add_control('category-position', [
+            'label' => 'جهت',
+            'type' => Controls_Manager::SELECT,
+            'options' => [
+                'top-left' => 'بالا چپ',
+                'top-right' => 'بالا راست',
+                'bottom-left' => 'پایین چپ',
+                'bottom-right' => 'پایین راست',
+            ],
+            'default' => 'top-left',
+        ]);
+        $this->add_control('category-background', [
+            'type' => Controls_Manager::COLOR,
+            'label' => 'رنگ پس زمینه',
+            'default' => '#fff',
+            'selectors' => [
+                '{{WRAPPER}} .post__category span' => 'background-color: {{VALUE}}',
+            ],
+        ]);
+        $this->add_control('category-color', [
+            'type' => Controls_Manager::COLOR,
+            'label' => 'رنگ',
+            'default' => '#000',
+            'selectors' => [
+                '{{WRAPPER}} .post__category span' => 'color: {{VALUE}}',
+            ],
+        ]);
+        $this->add_control('category-margin', [
+            'type' => Controls_Manager::DIMENSIONS,
+            'label' => 'فاصله خارجی',
+            'default' => [
+                'isLinked' => false,
+                'top' => 0,
+                'right' => 0,
+                'left' => 0,
+                'bottom' => 0,
+                'unit' => 'px',
+            ],
+            'size_units' => ['px'],
+            'selectors' => [
+                '{{WRAPPER}} .post__category span' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
+            ],
+        ]);
+        $this->add_control('category-padding', [
+            'type' => Controls_Manager::DIMENSIONS,
+            'label' => 'فاصله داخلی',
+            'default' => [
+                'isLinked' => true,
+                'top' => 0,
+                'right' => 0,
+                'left' => 0,
+                'bottom' => 0,
+                'unit' => 'px',
+            ],
+            'size_units' => ['px'],
+            'selectors' => [
+                '{{WRAPPER}} .post__category span' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
+            ],
+        ]);
+        $this->add_control('category-radius', [
+            'type' => Controls_Manager::DIMENSIONS,
+            'label' => 'برش گوشه ها',
+            'default' => [
+                'isLinked' => true,
+                'top' => 0,
+                'right' => 0,
+                'left' => 0,
+                'bottom' => 0,
+                'unit' => 'px',
+            ],
+            'size_units' => ['px'],
+            'selectors' => [
+                '{{WRAPPER}} .post__category span' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
+            ],
+        ]);
+        $this->add_group_control(Group_Control_Typography::get_type(), [
+            'name' => 'post-category',
+            'selector' => '{{WRAPPER}} .post__category'
+        ]);
+        $this->end_controls_section();
     }
 
     protected function render()
@@ -103,7 +194,7 @@ class MeeetElementorWidgetCarousel extends Widget_Base
                 ?>
                 <div class="glider__slide">
                     <?php if ($show_categories): ?>
-                        <div class="post__category">
+                        <div class="post__category <?php echo $settings['category-position'] ?>">
                             <?php
                             $cat__ids = wp_get_post_categories($post->ID);
                             $cat__names = [];
