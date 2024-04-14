@@ -172,6 +172,79 @@ class MeeetElementorWidgetCarousel extends Widget_Base
             'selector' => '{{WRAPPER}} .post__category'
         ]);
         $this->end_controls_section();
+
+        $this->start_controls_section('title-style', [
+            'label' => 'عنوان',
+            'tab' => Controls_Manager::TAB_STYLE,
+            'condition' => [
+                'show-title' => 'yes',
+            ]
+        ]);
+        $this->add_control('title-alignment', [
+            'label' => 'جهت متن',
+            'type' => Controls_Manager::CHOOSE,
+            'options' => [
+                'right' => [
+                    'title' => 'راست',
+                    'icon' => 'eicon-text-align-right',
+                ],
+                'center' => [
+                    'title' => 'وسط',
+                    'icon' => 'eicon-text-align-center',
+                ],
+                'left' => [
+                    'title' => 'چپ',
+                    'icon' => 'eicon-text-align-left',
+                ],
+            ],
+            'default' => 'right',
+            'toggle' => true,
+            'selectors' => [
+                '{{WRAPPER}} .post__title' => 'text-align: {{VALUE}}',
+            ],
+        ]);
+        $this->start_controls_tabs('title-color');
+        $this->start_controls_tab('title-normal', ['label' => 'عادی']);
+        $this->add_control('title-color-normal', [
+            'type' => Controls_Manager::COLOR,
+            'label' => 'رنگ',
+            'default' => '#000',
+            'selectors' => [
+                '{{WRAPPER}} .post__title a' => 'color: {{VALUE}}',
+            ],
+        ]);
+        $this->end_controls_tab();
+        $this->start_controls_tab('title-hover', ['label' => 'شناور']);
+        $this->add_control('title-color-hover', [
+            'type' => Controls_Manager::COLOR,
+            'label' => 'رنگ',
+            'selectors' => [
+                '{{WRAPPER}} .post__title a:hover' => 'color: {{VALUE}}',
+            ],
+        ]);
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+        $this->add_control('title-margin', [
+            'type' => Controls_Manager::DIMENSIONS,
+            'label' => 'فاصله',
+            'default' => [
+                'isLinked' => false,
+                'top' => 0,
+                'right' => 0,
+                'left' => 0,
+                'bottom' => 0,
+                'unit' => 'px',
+            ],
+            'size_units' => ['px'],
+            'selectors' => [
+                '{{WRAPPER}} .post__title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
+            ],
+        ]);
+        $this->add_group_control(Group_Control_Typography::get_type(), [
+            'name' => 'post-title',
+            'selector' => '{{WRAPPER}} .post__title a'
+        ]);
+        $this->end_controls_section();
     }
 
     protected function render()

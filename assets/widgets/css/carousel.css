@@ -46,3 +46,12 @@
 .post__category span {
     display: inline-block;
 }
+
+.post__image a {
+    display: block;
+}
+
+.post__title a {
+    text-decoration: none !important;
+    transition: none !important;
+}
