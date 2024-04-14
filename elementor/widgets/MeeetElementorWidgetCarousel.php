@@ -51,6 +51,36 @@ class MeeetElementorWidgetCarousel extends Widget_Base
             'default' => 'posts',
         ]);
         $this->end_controls_section();
+
+        $this->start_controls_section('slide-settings', [
+            'label' => 'تنظمات اسلاید',
+        ]);
+        $this->add_control('show-categories', [
+            'type' => Controls_Manager::SWITCHER,
+            'label' => 'نمایش دسته بندی های نوشته',
+            'default' => 'yes',
+        ]);
+        $this->add_control('show-image', [
+            'type' => Controls_Manager::SWITCHER,
+            'label' => 'نمایش تصویر نوشته',
+            'default' => 'yes',
+        ]);
+        $this->add_control('show-title', [
+            'type' => Controls_Manager::SWITCHER,
+            'label' => 'نمایش عنوان نوشته',
+            'default' => 'yes',
+        ]);
+        $this->add_control('show-expert', [
+            'type' => Controls_Manager::SWITCHER,
+            'label' => 'نمایش خلاصه نوشته',
+            'default' => 'yes',
+        ]);
+        $this->add_control('show-meta', [
+            'type' => Controls_Manager::SWITCHER,
+            'label' => 'نمایش اطلاعات نوشته',
+            'default' => 'yes',
+        ]);
+        $this->end_controls_section();
     }
 
     protected function render()
@@ -64,50 +94,66 @@ class MeeetElementorWidgetCarousel extends Widget_Base
                 'posts_per_page' => 0,
             ]);
             $categories = [];
-            foreach ($posts as $post) { ?>
+            foreach ($posts as $post) {
+                $show_categories = $settings['show-categories'];
+                $show_image = $settings['show-image'];
+                $show_title = $settings['show-title'];
+                $show_expert = $settings['show-expert'];
+                $show_meta = $settings['show-meta'];
+                ?>
                 <div class="glider__slide">
-                    <div class="post__category">
-                        <?php
-                        $cat__ids = wp_get_post_categories($post->ID);
-                        $cat__names = [];
-                        foreach ($cat__ids as $cat_id)
-                            if (isset($categories[$cat_id]))
-                                $cat__names[] = $categories[$cat_id];
-                            else
-                                $categories[$cat_id] = $cat__names[] = get_term($cat_id)->name;
+                    <?php if ($show_categories): ?>
+                        <div class="post__category">
+                            <?php
+                            $cat__ids = wp_get_post_categories($post->ID);
+                            $cat__names = [];
+                            foreach ($cat__ids as $cat_id)
+                                if (isset($categories[$cat_id]))
+                                    $cat__names[] = $categories[$cat_id];
+                                else
+                                    $categories[$cat_id] = $cat__names[] = get_term($cat_id)->name;
 
-                        echo "<span>" . implode("</span><span>", $cat__names) . "</span>" ?>
-                    </div>
-                    <div class="post__image">
-                        <a href="<?php echo get_permalink($post) ?>">
-                            <?php echo get_the_post_thumbnail($post) ?>
-                        </a>
-                    </div>
-                    <div class="post__title">
-                        <a href="<?php echo get_permalink($post) ?>">
-                            <?php echo $post->post_title ?>
-                        </a>
-                    </div>
-                    <div class="post__excerpt">
-                        <?php echo get_the_excerpt($post) ?>
-                    </div>
-                    <div class="post__meta">
-                        <div class="post__author">
-                            <span class="label">نویسنده</span>
-                            <a href="<?php echo get_author_posts_url($post->post_author) ?>" class="value">
-                                <?php $author = new WP_User($post->post_author) ?>
-                                <?php echo $author->data->user_nicename ?>
+                            echo "<span>" . implode("</span><span>", $cat__names) . "</span>" ?>
+                        </div>
+                    <?php endif ?>
+                    <?php if ($show_image): ?>
+                        <div class="post__image">
+                            <a href="<?php echo get_permalink($post) ?>">
+                                <?php echo get_the_post_thumbnail($post) ?>
                             </a>
                         </div>
-                        <div class="post__comments">
-                            <span class="label">کامنت</span>
-                            <span class="value"><?php echo $post->comment_count ?></span>
+                    <?php endif ?>
+                    <?php if ($show_title): ?>
+                        <div class="post__title">
+                            <a href="<?php echo get_permalink($post) ?>">
+                                <?php echo $post->post_title ?>
+                            </a>
                         </div>
-                        <div class="post__date">
-                            <span class="label">تاریخ</span>
-                            <span class="value"><?php echo explode(' ', $post->post_date)[0] ?></span>
+                    <?php endif ?>
+                    <?php if ($show_expert): ?>
+                        <div class="post__excerpt">
+                            <?php echo get_the_excerpt($post) ?>
                         </div>
-                    </div>
+                    <?php endif ?>
+                    <?php if ($show_meta): ?>
+                        <div class="post__meta">
+                            <div class="post__author">
+                                <span class="label">نویسنده</span>
+                                <a href="<?php echo get_author_posts_url($post->post_author) ?>" class="value">
+                                    <?php $author = new WP_User($post->post_author) ?>
+                                    <?php echo $author->data->user_nicename ?>
+                                </a>
+                            </div>
+                            <div class="post__comments">
+                                <span class="label">کامنت</span>
+                                <span class="value"><?php echo $post->comment_count ?></span>
+                            </div>
+                            <div class="post__date">
+                                <span class="label">تاریخ</span>
+                                <span class="value"><?php echo explode(' ', $post->post_date)[0] ?></span>
+                            </div>
+                        </div>
+                    <?php endif ?>
                 </div>
                 <?php
             }
