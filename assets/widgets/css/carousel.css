@@ -49,6 +49,8 @@
 
 .post__image a {
     display: block;
+    width:fit-content;
+    margin:0 auto;
 }
 
 .post__title a {

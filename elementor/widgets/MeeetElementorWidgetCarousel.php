@@ -73,7 +73,7 @@ class MeeetElementorWidgetCarousel extends Widget_Base
             'label' => 'نمایش عنوان نوشته',
             'default' => 'yes',
         ]);
-        $this->add_control('show-expert', [
+        $this->add_control('show-excerpt', [
             'type' => Controls_Manager::SWITCHER,
             'label' => 'نمایش خلاصه نوشته',
             'default' => 'yes',
@@ -245,6 +245,67 @@ class MeeetElementorWidgetCarousel extends Widget_Base
             'selector' => '{{WRAPPER}} .post__title a'
         ]);
         $this->end_controls_section();
+
+        $this->start_controls_section('excerpt-style', [
+            'label' => 'خلاصه نوشته',
+            'tab' => Controls_Manager::TAB_STYLE,
+            'condition' => [
+                'show-excerpt' => 'yes',
+            ]
+        ]);
+        $this->add_control('excerpt-alignment', [
+            'label' => 'جهت متن',
+            'type' => Controls_Manager::CHOOSE,
+            'options' => [
+                'right' => [
+                    'title' => 'راست',
+                    'icon' => 'eicon-text-align-right',
+                ],
+                'center' => [
+                    'title' => 'وسط',
+                    'icon' => 'eicon-text-align-center',
+                ],
+                'left' => [
+                    'title' => 'چپ',
+                    'icon' => 'eicon-text-align-left',
+                ],
+            ],
+            'default' => 'right',
+            'toggle' => true,
+            'selectors' => [
+                '{{WRAPPER}} .post__excerpt' => 'text-align: {{VALUE}}',
+            ],
+        ]);
+        $this->add_control('excerpt-color', [
+            'type' => Controls_Manager::COLOR,
+            'label' => 'رنگ',
+            'default' => '#000',
+            'selectors' => [
+                '{{WRAPPER}} .post__excerpt' => 'color: {{VALUE}}',
+            ],
+        ]);
+        $this->add_control('excerpt-margin', [
+            'type' => Controls_Manager::DIMENSIONS,
+            'label' => 'فاصله',
+            'default' => [
+                'isLinked' => false,
+                'top' => 0,
+                'right' => 0,
+                'left' => 0,
+                'bottom' => 0,
+                'unit' => 'px',
+            ],
+            'size_units' => ['px'],
+            'selectors' => [
+                '{{WRAPPER}} .post__excerpt' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
+            ],
+        ]);
+        $this->add_group_control(Group_Control_Typography::get_type(), [
+            'name' => 'post-excerpt',
+            'selector' => '{{WRAPPER}} .post__excerpt'
+        ]);
+        $this->end_controls_section();
+
     }
 
     protected function render()
@@ -262,7 +323,7 @@ class MeeetElementorWidgetCarousel extends Widget_Base
                 $show_categories = $settings['show-categories'];
                 $show_image = $settings['show-image'];
                 $show_title = $settings['show-title'];
-                $show_expert = $settings['show-expert'];
+                $show_excerpt = $settings['show-excerpt'];
                 $show_meta = $settings['show-meta'];
                 ?>
                 <div class="glider__slide">
@@ -294,7 +355,7 @@ class MeeetElementorWidgetCarousel extends Widget_Base
                             </a>
                         </div>
                     <?php endif ?>
-                    <?php if ($show_expert): ?>
+                    <?php if ($show_excerpt): ?>
                         <div class="post__excerpt">
                             <?php echo get_the_excerpt($post) ?>
                         </div>
