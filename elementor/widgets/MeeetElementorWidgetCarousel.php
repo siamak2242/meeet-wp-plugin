@@ -229,6 +229,35 @@ class MeeetElementorWidgetCarousel extends Widget_Base
         ]);
         $this->end_controls_section();
 
+        // style => image
+        $this->start_controls_section('image-style', [
+            'label' => 'تصویر',
+            'tab' => Controls_Manager::TAB_STYLE,
+            'condition' => [
+                'show-image' => 'yes',
+            ]
+        ]);
+        $this->add_control('image-width', [
+            'type' => Controls_Manager::SLIDER,
+            'label' => 'عرض تصویر',
+            'size_units' => ['%'],
+            'range' => [
+                '%' => [
+                    'min' => 1,
+                    'max' => 100,
+                    'step' => 1,
+                ]
+            ],
+            'default' => [
+                'unit' => '%',
+                'size' => 100,
+            ],
+            'selectors' => [
+                '{{WRAPPER}} .post__image a' => 'width: {{SIZE}}{{UNIT}};',
+            ]
+        ]);
+        $this->end_controls_section();
+
         // style => title
         $this->start_controls_section('title-style', [
             'label' => 'عنوان',
