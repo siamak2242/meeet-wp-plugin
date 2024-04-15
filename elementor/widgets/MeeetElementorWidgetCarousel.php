@@ -456,6 +456,42 @@ class MeeetElementorWidgetCarousel extends Widget_Base
                 '{{WRAPPER}} .post__meta' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
             ],
         ]);
+        $this->add_control('meta-justify-content', [
+                'label' => 'چینش اطلاعات',
+                'type' => Controls_Manager::CHOOSE,
+                'options' => [
+                    'flex-start' => [
+                        'title' => 'Start',
+                        'icon' => 'eicon-align-end-h',
+                    ],
+                    'center' => [
+                        'title' => 'Center',
+                        'icon' => 'eicon-justify-center-h',
+                    ],
+                    'space-between' => [
+                        'title' => 'Space Between',
+                        'icon' => 'eicon-justify-space-between-h',
+                    ],
+                    'space-around' => [
+                        'title' => 'Space Around',
+                        'icon' => 'eicon-justify-space-around-h',
+                    ],
+                    'space-evenly' => [
+                        'title' => 'Space Evenly',
+                        'icon' => 'eicon-justify-space-evenly-h',
+                    ],
+                    'flex-end' => [
+                        'title' => 'End',
+                        'icon' => 'eicon-align-start-h',
+                    ],
+                ],
+                'default' => 'space-between',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .post__meta' => 'justify-content: {{VALUE}};',
+                ],
+            ]
+        );
         $this->add_control('author-icon', [
                 'label' => 'نویسنده',
                 'type' => Controls_Manager::ICONS,
