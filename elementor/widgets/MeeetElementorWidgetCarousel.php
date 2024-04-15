@@ -3,6 +3,7 @@
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Typography;
+use Elementor\Icons_Manager;
 
 class MeeetElementorWidgetCarousel extends Widget_Base
 {
@@ -306,6 +307,84 @@ class MeeetElementorWidgetCarousel extends Widget_Base
         ]);
         $this->end_controls_section();
 
+        $this->start_controls_section('meta-section', [
+            'label' => 'اطلاعات نوشته',
+            'tab' => Controls_Manager::TAB_STYLE,
+            'condition' => [
+                'show-meta' => 'yes'
+            ]
+        ]);
+        $this->add_control('meta-icon-size', [
+            'label' => 'اندازه آیکن',
+            'type' => Controls_Manager::SLIDER,
+            'size_units' => ['px'],
+            'default' => [
+                'unit' => 'px',
+                'size' => 20,
+            ],
+            'range' => [
+                'px' => [
+                    'min' => 10,
+                    'max' => 100,
+                    'step' => 2,
+                ]
+            ],
+            'selectors' => [
+                '{{WRAPPER}} .post__meta span.label' => 'width: {{SIZE}}{{UNIT}}',
+            ]
+        ]);
+        $this->add_control('meta-icon-color', [
+            'label' => 'رنگ آیکن',
+            'type' => Controls_Manager::COLOR,
+            'default' => '#aaa',
+            'selectors' => [
+                '{{WRAPPER}} .post__meta span.label svg' => 'fill: {{VALUE}}'
+            ]
+        ]);
+        $this->add_control('meta-text-color', [
+            'label' => 'رنگ متن',
+            'type' => Controls_Manager::COLOR,
+            'default' => '#aaa',
+            'selectors' => [
+                '{{WRAPPER}} .post__meta .value' => 'color: {{VALUE}}'
+            ]
+        ]);
+        $this->add_group_control(Group_Control_Typography::get_type(), [
+            'name' => 'post-meta',
+            'selector' => '{{WRAPPER}} .post__meta .value',
+        ]);
+        $this->add_control('meta-margin', [
+            'type' => Controls_Manager::DIMENSIONS,
+            'label' => 'فاصله',
+            'default' => [
+                'isLinked' => false,
+                'top' => 0,
+                'right' => 0,
+                'left' => 0,
+                'bottom' => 0,
+                'unit' => 'px',
+            ],
+            'size_units' => ['px'],
+            'selectors' => [
+                '{{WRAPPER}} .post__meta' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
+            ],
+        ]);
+        $this->add_control('author-icon', [
+                'label' => 'نویسنده',
+                'type' => Controls_Manager::ICONS,
+            ]
+        );
+        $this->add_control('comment-icon', [
+                'label' => 'نظرات',
+                'type' => Controls_Manager::ICONS,
+            ]
+        );
+        $this->add_control('date-icon', [
+                'label' => 'تاریخ',
+                'type' => Controls_Manager::ICONS,
+            ]
+        );
+        $this->end_controls_section();
     }
 
     protected function render()
@@ -363,18 +442,24 @@ class MeeetElementorWidgetCarousel extends Widget_Base
                     <?php if ($show_meta): ?>
                         <div class="post__meta">
                             <div class="post__author">
-                                <span class="label">نویسنده</span>
+                                <span class="label">
+                                <?php Icons_Manager::render_icon($settings['author-icon'], ['aria-hidden' => true], 'div') ?>
+                                </span>
                                 <a href="<?php echo get_author_posts_url($post->post_author) ?>" class="value">
                                     <?php $author = new WP_User($post->post_author) ?>
                                     <?php echo $author->data->user_nicename ?>
                                 </a>
                             </div>
                             <div class="post__comments">
-                                <span class="label">کامنت</span>
+                                <span class="label">
+                                <?php Icons_Manager::render_icon($settings['comment-icon'], ['aria-hidden' => true]) ?>
+                                </span>
                                 <span class="value"><?php echo $post->comment_count ?></span>
                             </div>
                             <div class="post__date">
-                                <span class="label">تاریخ</span>
+                                <span class="label">
+                                <?php Icons_Manager::render_icon($settings['date-icon'], ['aria-hidden' => true]) ?>
+                                </span>
                                 <span class="value"><?php echo explode(' ', $post->post_date)[0] ?></span>
                             </div>
                         </div>

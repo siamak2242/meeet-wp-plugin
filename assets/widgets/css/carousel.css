@@ -49,11 +49,27 @@
 
 .post__image a {
     display: block;
-    width:fit-content;
-    margin:0 auto;
+    width: fit-content;
+    margin: 0 auto;
 }
 
 .post__title a {
     text-decoration: none !important;
     transition: none !important;
+}
+
+.post__meta {
+    display: flex;
+    justify-content: space-around;
+}
+
+.post__meta > div {
+    display: flex;
+    align-items: center;
+}
+
+.post__meta .label {
+    display: block;
+    margin: 0 10px;
+    line-height: 20px;
 }
