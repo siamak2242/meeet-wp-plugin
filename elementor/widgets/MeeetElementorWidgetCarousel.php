@@ -122,7 +122,7 @@ class MeeetElementorWidgetCarousel extends Widget_Base
             'type' => Controls_Manager::SWITCHER,
             'default' => 'no',
         ]);
-        $this->add_control('category-margin', [
+        $this->add_control('carousel-dots-margin', [
             'type' => Controls_Manager::DIMENSIONS,
             'label' => 'فاصله نقطه ها',
             'default' => [
