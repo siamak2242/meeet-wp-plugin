@@ -41,6 +41,7 @@ class MeeetElementorWidgetCarousel extends Widget_Base
 
     protected function register_controls()
     {
+        // content => query settings
         $this->start_controls_section('query-settings', [
             'label' => 'تنظیمات کوئری',
             'tab' => Controls_Manager::TAB_CONTENT,
@@ -55,6 +56,7 @@ class MeeetElementorWidgetCarousel extends Widget_Base
         ]);
         $this->end_controls_section();
 
+        // content => parts of slide
         $this->start_controls_section('slide-settings', [
             'label' => 'تنظمات اسلاید',
             'tab' => Controls_Manager::TAB_CONTENT,
@@ -86,6 +88,59 @@ class MeeetElementorWidgetCarousel extends Widget_Base
         ]);
         $this->end_controls_section();
 
+        // content => carousel settings
+        $this->start_controls_section('carousel-settings', [
+            'label' => 'تنظیمات گردونه',
+            'tab' => Controls_Manager::TAB_CONTENT,
+        ]);
+        $this->add_control('carousel-slides-to-show', [
+            'label' => 'تعداد اسلایدهای هر صفحه',
+            'type' => Controls_Manager::NUMBER,
+            'min' => 1,
+            'max' => 10,
+            'step' => 1,
+            'default' => 3,
+        ]);
+        $this->add_control('carousel-slides-to-scroll', [
+            'label' => 'تعداد اسلایدهای هر اسکرول',
+            'type' => Controls_Manager::NUMBER,
+            'min' => 1,
+            'max' => 10,
+            'step' => 1,
+            'default' => 3,
+        ]);
+        $this->add_control('carousel-duration', [
+            'label' => 'مدت انیمیشن (میلی ثانیه)',
+            'type' => Controls_Manager::NUMBER,
+            'min' => 100,
+            'max' => 5000,
+            'step' => 100,
+            'default' => 500,
+        ]);
+        $this->add_control('carousel-rewind', [
+            'label' => 'حلقه',
+            'type' => Controls_Manager::SWITCHER,
+            'default' => 'no',
+        ]);
+        $this->add_control('category-margin', [
+            'type' => Controls_Manager::DIMENSIONS,
+            'label' => 'فاصله نقطه ها',
+            'default' => [
+                'isLinked' => false,
+                'top' => 0,
+                'right' => 0,
+                'left' => 0,
+                'bottom' => 0,
+                'unit' => 'px',
+            ],
+            'size_units' => ['px'],
+            'selectors' => [
+                '{{WRAPPER}} .glider__dots' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
+            ],
+        ]);
+        $this->end_controls_section();
+
+        // style => categories
         $this->start_controls_section('categories-style', [
             'label' => 'دسته بندی ها',
             'tab' => Controls_Manager::TAB_STYLE,
@@ -174,6 +229,7 @@ class MeeetElementorWidgetCarousel extends Widget_Base
         ]);
         $this->end_controls_section();
 
+        // style => title
         $this->start_controls_section('title-style', [
             'label' => 'عنوان',
             'tab' => Controls_Manager::TAB_STYLE,
@@ -247,6 +303,7 @@ class MeeetElementorWidgetCarousel extends Widget_Base
         ]);
         $this->end_controls_section();
 
+        // style => excerpt
         $this->start_controls_section('excerpt-style', [
             'label' => 'خلاصه نوشته',
             'tab' => Controls_Manager::TAB_STYLE,
@@ -307,6 +364,7 @@ class MeeetElementorWidgetCarousel extends Widget_Base
         ]);
         $this->end_controls_section();
 
+        // style => meta
         $this->start_controls_section('meta-section', [
             'label' => 'اطلاعات نوشته',
             'tab' => Controls_Manager::TAB_STYLE,
@@ -470,17 +528,22 @@ class MeeetElementorWidgetCarousel extends Widget_Base
             echo "</div>"; // div.glider__track
             echo "<div class='glider-next glider__next__$id'><</div>";
             echo "<div class='glider-prev glider__prev__$id'>></div>";
+            echo "<div class='glider__dots glider__dots__$id'></div>";
             echo "</div>"; // div.glider__wrapper
             ?>
             <script>
                 waitForElm('<?php echo ".glider__track__$id" ?>').then(element => {
                     new Glider(element, {
                         draggable: true,
-                        slidesToShow: 1,
+                        slidesToShow: <?php echo $settings['carousel-slides-to-show'] ?>,
+                        slidesToScroll: <?php echo $settings['carousel-slides-to-scroll'] ?>,
                         arrows: {
                             next: '.glider__next__<?php echo $id ?>',
                             prev: '.glider__prev__<?php echo $id ?>',
-                        }
+                        },
+                        dots: '.glider__dots__<?php echo $id ?>',
+                        duration: <?php echo ((int)$settings["carousel-duration"]) / 1000 ?>,
+                        rewind: <?php echo $settings['carousel-rewind'] ? 'true' : 'false' ?>,
                     })
                 })
             </script>

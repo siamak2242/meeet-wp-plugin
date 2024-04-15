@@ -37,6 +37,10 @@
 
 .glider__slide {
     position: relative;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    margin: 40px;
 }
 
 .post__category {
@@ -49,8 +53,13 @@
 
 .post__image a {
     display: block;
-    width: fit-content;
+    width: 100%;
     margin: 0 auto;
+}
+
+.post__image img {
+    aspect-ratio: 1;
+    width: 100%;
 }
 
 .post__title a {
