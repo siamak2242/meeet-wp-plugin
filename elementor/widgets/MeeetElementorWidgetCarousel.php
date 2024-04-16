@@ -120,7 +120,7 @@ class MeeetElementorWidgetCarousel extends Widget_Base
         $this->add_control('carousel-rewind', [
             'label' => 'حلقه',
             'type' => Controls_Manager::SWITCHER,
-            'default' => 'no',
+            'default' => '',
         ]);
         $this->add_control('carousel-dots-margin', [
             'type' => Controls_Manager::DIMENSIONS,
@@ -138,6 +138,82 @@ class MeeetElementorWidgetCarousel extends Widget_Base
                 '{{WRAPPER}} .glider__dots' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
             ],
         ]);
+        $this->end_controls_section();
+
+        // style => slide
+        $this->start_controls_section('slide-style', [
+            'label' => 'اسلاید',
+            'tab' => Controls_Manager::TAB_STYLE,
+        ]);
+        $this->add_control('slide-margin', [
+            'label' => 'فاصله خارجی',
+            'type' => Controls_Manager::DIMENSIONS,
+            'size_units' => ['px'],
+            'default' => [
+                'unit' => 'px',
+                'top' => 0,
+                'right' => 0,
+                'bottom' => 0,
+                'left' => 0,
+                'isLinked' => true,
+            ],
+            'selectors' => [
+                '{{WRAPPER}} .glider__slide' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+            ],
+        ]);
+        $this->add_control('slide-padding', [
+            'label' => 'فاصله داخلی',
+            'type' => Controls_Manager::DIMENSIONS,
+            'size_units' => ['px'],
+            'default' => [
+                'unit' => 'px',
+                'top' => 0,
+                'right' => 0,
+                'bottom' => 0,
+                'left' => 0,
+                'isLinked' => true,
+            ],
+            'selectors' => [
+                '{{WRAPPER}} .glider__slide' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+            ],
+        ]);
+        $this->add_control('slide-radius', [
+            'label' => 'برش گوشه ها',
+            'type' => Controls_Manager::DIMENSIONS,
+            'size_units' => ['px'],
+            'default' => [
+                'unit' => 'px',
+                'top' => 0,
+                'right' => 0,
+                'bottom' => 0,
+                'left' => 0,
+                'isLinked' => true,
+            ],
+            'selectors' => [
+                '{{WRAPPER}} .glider__slide' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+            ],
+        ]);
+        $this->start_controls_tabs('slide-tabs');
+        $this->start_controls_tab('slide-normal', ['label' => 'عادی']);
+        $this->add_control('slide-background-normal', [
+            'label' => 'رنگ پس زمینه',
+            'type' => Controls_Manager::COLOR,
+            'default' => '#fff',
+            'selectors' => [
+                '{{WRAPPER}} .glider__slide' => 'background-color: {{VALUE}}',
+            ],
+        ]);
+        $this->end_controls_tab();
+        $this->start_controls_tab('slide-hover', ['label' => 'شناور']);
+        $this->add_control('slide-background-hover', [
+            'label' => 'رنگ پس زمینه',
+            'type' => Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .glider__slide:hover' => 'background-color: {{VALUE}}',
+            ],
+        ]);
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
         $this->end_controls_section();
 
         // style => categories
@@ -256,6 +332,22 @@ class MeeetElementorWidgetCarousel extends Widget_Base
                 '{{WRAPPER}} .post__image a' => 'width: {{SIZE}}{{UNIT}};',
             ]
         ]);
+	    $this->add_control('image-radius', [
+		    'label' => 'برش گوشه ها',
+		    'type' => Controls_Manager::DIMENSIONS,
+		    'size_units' => ['px', '%'],
+		    'default' => [
+			    'unit' => 'px',
+			    'top' => 0,
+			    'right' => 0,
+			    'bottom' => 0,
+			    'left' => 0,
+			    'isLinked' => true,
+		    ],
+		    'selectors' => [
+			    '{{WRAPPER}} .post__image img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+		    ],
+	    ]);
         $this->end_controls_section();
 
         // style => title
