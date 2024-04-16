@@ -448,6 +448,10 @@ class MeeetElementorWidgetCarousel extends Widget_Base
                     'title' => 'چپ',
                     'icon' => 'eicon-text-align-left',
                 ],
+                'justify' => [
+                    'title' => 'تراز شده',
+                    'icon' => 'eicon-text-align-justify',
+                ]
             ],
             'default' => 'right',
             'toggle' => true,
